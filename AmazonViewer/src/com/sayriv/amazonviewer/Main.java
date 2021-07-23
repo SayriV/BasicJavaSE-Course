@@ -2,10 +2,20 @@ package com.sayriv.amazonviewer;
 
 import java.util.Scanner;
 
+import com.sayriv.amazonviewer.model.Movie;
+
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		showMenu();
+		
+	}
+
+
+
+	public static void showMenu() {
 
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
@@ -24,7 +34,7 @@ public class Main {
 	            opcion = sc.nextInt();
 	                switch (opcion) {
 	                    case 1:
-	                        System.out.println("Seleccionaste -- Movies --");
+	                        showMovies();
 	                        break;
 	                    case 2:
 	                        System.out.println("Seleccionaste -- Series --");
@@ -43,6 +53,31 @@ public class Main {
 	                        break;
 	                }
 		}while(opcion != 0);
+		
+	}
+	
+	public static void showMovies() { //Metodo que muestra las peliculas disponibles
+		System.out.println();
+		System.out.println("¨: MOVIES :¨");
+	}
+	
+	public static void showSeries() {
+		System.out.println();
+		System.out.println("¨: SERIES :¨");
 	}
 
+	public static void showChapters() {
+		System.out.println();
+		System.out.println("¨: CHAPTERS :¨");
+	}
+	
+	public static void showBooks() {
+		System.out.println();
+		System.out.println("¨: BOOKS :¨");
+	}
+	
+	public static void showMagazines() {
+		System.out.println();
+		System.out.println("¨: MAGAZINES :¨");
+	}
 }
