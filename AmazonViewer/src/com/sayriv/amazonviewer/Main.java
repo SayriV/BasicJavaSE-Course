@@ -1,5 +1,6 @@
 package com.sayriv.amazonviewer;
 
+import java.util.Date;
 import java.util.Scanner;
 
 import com.sayriv.amazonviewer.model.Movie;
@@ -8,9 +9,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		showMenu();
-		
+		//Movie movie = new Movie("Coco", "Animated", (short)2017);
+		//movie.showData();
+		//showMenu();
+		Movie movie = new Movie ("Coco", "Animated", "", 120, (short)2017);
+		System.out.println(movie.toString());
 	}
 
 
@@ -26,6 +29,8 @@ public class Main {
 			System.out.println("2. Series");
 			System.out.println("3. Books");
 			System.out.println("4. Magazines");
+			System.out.println("5. Report");
+			System.out.println("6. Today Report");
 			System.out.println("0. Salir");
 			
 			
@@ -37,13 +42,19 @@ public class Main {
 	                        showMovies();
 	                        break;
 	                    case 2:
-	                        System.out.println("Seleccionaste -- Series --");
+	                        showSeries();
 	                        break;
 	                    case 3:
-	                        System.out.println("Seleccionaste -- Books --");
+	                        showBooks();
 	                        break;
 	                    case 4:
-	                        System.out.println("Seleccionaste -- Magazines --");
+	                        showMagazines();
+	                        break;
+	                    case 5:
+	                        makeReport();
+	                        break;
+	                    case 6:
+	                        makeReport(new Date()); //Declarando objeto tipo Date, es lo mismo que Date date = new Date();
 	                        break;
 	                    case 0:
 	                        System.out.println("FIN");    
@@ -79,5 +90,13 @@ public class Main {
 	public static void showMagazines() {
 		System.out.println();
 		System.out.println("¨: MAGAZINES :¨");
+	}
+	
+	public static void makeReport() {
+		
+	}
+	
+	public static void makeReport(Date date) { //Overload: diferenciamos con parametros
+		
 	}
 }
