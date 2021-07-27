@@ -2,79 +2,84 @@ package com.sayriv.amazonviewer.model;
 
 import java.util.Date;
 
-public class Book {
+public class Book extends Publication implements IVisualizable{
 	private int id;
-	private String title;
-	private String genre;
-	private String [] authors;
-	private Date editionDate;
-	private String editorial;
 	private String isbn;
 	private boolean readed;
 	private int timeReaded;
 	//int numberPages;
-	public Book(String title, Date editionDate, String editorial, String isbn) {
-		super();
-		this.title = title;
-		this.editionDate = editionDate;
-		this.editorial = editorial;
-		this.isbn = isbn;
+	
+	public Book(int id, String title, Date date, String editorial, String authors) {
+		super(id, title, date, editorial, authors);
+		// TODO Auto-generated constructor stub
 	}
+
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getGenre() {
-		return genre;
-	}
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-	public String[] getAuthors() {
-		return authors;
-	}
-	public void setAuthors(String[] authors) {
-		this.authors = authors;
-	}
-	public Date getEditionDate() {
-		return editionDate;
-	}
-	public void setEditionDate(Date editionDate) {
-		this.editionDate = editionDate;
-	}
-	public String getEditorial() {
-		return editorial;
-	}
-	public void setEditorial(String editorial) {
-		this.editorial = editorial;
-	}
+
 	public String getIsbn() {
 		return isbn;
 	}
+
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
 	public boolean isReaded() {
 		return readed;
 	}
+
 	public void setReaded(boolean readed) {
 		this.readed = readed;
 	}
+
 	public int getTimeReaded() {
 		return timeReaded;
 	}
+
 	public void setTimeReaded(int timeReaded) {
 		this.timeReaded = timeReaded;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String detailBook =  "\n Title: "+ getTitle() + 
+				"\n Editorial : "+ getEditorial() +
+				"\n Editorial Date: "+ getEditionDate()+
+				"\n Authors: ";
+		for (int i = 0; i < getAuthors().length; i++) {
+			detailBook += "\t" + getAuthors()[i];
+		}
+		return detailBook;
+	}
+
+	@Override
+	public Date startToSee(Date dateI) {
+		// TODO Auto-generated method stub
+		return dateI;
+	}
+	
+	//Resta la sección de segundos que hay en las dos fechas
+	@Override
+	public void stopToSee(Date dateI, Date dateF) {
+		// TODO Auto-generated method stub
+		if (dateF.getSeconds() > dateI.getSeconds()) {
+			setTimeReaded(dateF.getSeconds() - dateI.getSeconds());
+		}else {
+			setTimeReaded(0);
+		}
+		
+	}
+	
+	//Calcula la diferencia en segundos entre las dos fechas.
+	
+	/*@Override
+	public void stopToSee(Date dateI, Date dateF) {
+	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) / 1000 : 0;
+	  this.setTimeRead(result);
+	}*/
 	
 	 
 }

@@ -1,15 +1,17 @@
 package com.sayriv.amazonviewer.model;
 
+import java.util.ArrayList;
+
 public class Serie extends Film{
 	
 	private int id;
 	private int sessionQuantity;
-	private Chapter[] chapters;
+	private ArrayList<Chapter> chapters;
 	
 	public Serie(String title, String genre, String creator, int duration, int sessionQuantity) {
 		super(title, genre, creator, duration);
 		// TODO Auto-generated constructor stub
-		this.sessionQuantity = sessionQuantity;
+		this.sessionQuantity = sessionQuantity; //Sobreescribiendo método constructor
 	
 	}
 
@@ -25,12 +27,22 @@ public class Serie extends Film{
 		this.sessionQuantity = sessionQuantity;
 	}
 
-	public Chapter[] getChapters() {
+	public ArrayList<Chapter> getChapters() {
 		return chapters;
 	}
 
-	public void setChapters(Chapter[] chapters) {
+	public void setChapters(ArrayList<Chapter> chapters) {
 		this.chapters = chapters;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return  "\n Title: "+ getTitle() + 
+				"\n Genre: "+ getGenre() +
+				"\n Creator: "+ getCreator() +
+				"\n Duration: "+ getDuration() + " chapters" +
+				"\n Session Quantity: "+ getSessionQuantity();
 	}
 	
 	

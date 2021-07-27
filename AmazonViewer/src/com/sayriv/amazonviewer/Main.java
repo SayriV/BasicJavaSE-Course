@@ -1,19 +1,17 @@
 package com.sayriv.amazonviewer;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 import com.sayriv.amazonviewer.model.Movie;
+import com.sayriv.amazonviewer.model.Serie;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//Movie movie = new Movie("Coco", "Animated", (short)2017);
-		//movie.showData();
-		//showMenu();
-		Movie movie = new Movie ("Coco", "Animated", "", 120, (short)2017);
-		System.out.println(movie.toString());
+		showMenu();
 	}
 
 
@@ -21,6 +19,7 @@ public class Main {
 	public static void showMenu() {
 
 		Scanner sc = new Scanner(System.in);
+		//int exit = 0;
 		int opcion = 0;
 		do {
 			System.out.println("Bienvenindos Amazon Viewer");
@@ -36,7 +35,7 @@ public class Main {
 			
 			//Leer la respuesta del usuario 
 
-	            opcion = sc.nextInt();
+	           opcion = sc.nextInt();
 	                switch (opcion) {
 	                    case 1:
 	                        showMovies();
@@ -68,8 +67,42 @@ public class Main {
 	}
 	
 	public static void showMovies() { //Metodo que muestra las peliculas disponibles
-		System.out.println();
-		System.out.println("¨: MOVIES :¨");
+		int exit=1;
+		ArrayList<Movie> movies = Movie.makeMoviesList();
+		do {
+			System.out.println();
+			System.out.println("¨: MOVIES :¨");
+			System.out.println();
+
+			for (int i = 0; i < movies.size(); i++) {
+				System.out.println(i+1 + ". " + movies.get(i).getTitle()+ ", visto: "+ movies.get(i).isViewed());
+			}	
+			System.out.println("0. Regresar al menu");
+			System.out.println();
+			
+			//Leer respuesta del usuario
+			
+			Scanner sc = new Scanner (System.in);
+			int opcion = sc.nextInt();
+			
+			if(opcion == 0) showMenu();
+			
+			Movie movieSelected = movies.get(opcion-1);
+			movieSelected.setViewed(true);
+			Date dateI = movieSelected.startToSee(new Date());
+		
+			for (int i = 0; i < 100; i++) {
+				System.out.println(".........");
+			}
+			
+			//Termine de ver la pelicula
+			movieSelected.stopToSee(dateI, new Date());
+			System.out.println();
+			System.out.println("Viste: "+ movieSelected);
+			System.out.println("Por: "+movieSelected.getTimeViewed()+ " milisegundos");
+		
+		}while(exit!=0);
+		
 	}
 	
 	public static void showSeries() {

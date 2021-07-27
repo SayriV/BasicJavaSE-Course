@@ -1,6 +1,7 @@
 package com.sayriv.amazonviewer.model;
 
 public class Film {
+	private int id;
 	private String title;
 	private String genre;
 	private String creator;
@@ -14,6 +15,10 @@ public class Film {
 		this.genre = genre;
 		this.creator = creator;
 		this.duration = duration;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getTitle() {
@@ -47,8 +52,14 @@ public class Film {
 	public void setYear(short year) {
 		this.year = year;
 	}
-	public boolean isViewed() {
-		return viewed;
+	public String isViewed() {
+		String visto = "";
+		if(viewed == true) {
+			visto="Si";
+		}else {
+			visto="No";
+		}
+		return visto;
 	}
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;

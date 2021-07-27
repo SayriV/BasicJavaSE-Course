@@ -1,6 +1,9 @@
 package com.sayriv.amazonviewer.model;
 
-public class Movie extends Film{
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Movie extends Film implements IVisualizable {
 	//Datos privados ¿como acceder a ellos? Con get y set
 	private int id;
 	private int timeViewed;
@@ -10,7 +13,7 @@ public class Movie extends Film{
 	
 	public Movie(String title, String genre, String creator, int duration, short year) { //Constructor
 		super(title, genre, creator, duration);
-		setYear(year );
+		setYear(year ); //Sobreescribiendo método constructor
 	}
 
 	public void showData(){
@@ -35,11 +38,40 @@ public class Movie extends Film{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Title: "+getTitle() + 
-				" \n Genre: "+getGenre() +
-				"\n Year: "+ getYear()+
+		return  "\n Title: "+ getTitle() + 
+				"\n Genre: "+ getGenre() +
+				"\n Year: "+ getYear() +
 				"\n Creator: "+ getCreator() +
 				"\n Duration: "+ getDuration();
+	}
+
+	// Comienza a implementarse metodos de la Interfaz, ya que ella no tiene implementado ningun metodo por si misma
+	// Es obligatorio sobreescribir lo metodos
+	// Al implementar una interfaz es necesario añadir comportamientos
+	@Override
+	public Date startToSee(Date dateI) {
+		// TODO Auto-generated method stub
+		return dateI;
+	}
+
+	@Override
+	public void stopToSee(Date dateI, Date dateF) {
+		// TODO Auto-generated method stub
+		if (dateF.getTime() > dateI.getTime()) {
+			setTimeViewed((int)(dateF.getTime() - dateI.getTime()));
+		}else {
+			setTimeViewed(0);
+		}
+			
+		
+	}
+	
+	public static ArrayList<Movie> makeMoviesList(){
+		ArrayList<Movie> movies = new ArrayList();
+		for (int i = 1; i <= 5; i++) { //Genere una lista de 5 peliculas
+			movies.add(new Movie("Movie " +i, "Genero " +i, "Creador " +i, 120 +i, (short)(2017 +i)));
+		}
+		return movies;
 	}
 	
 }
